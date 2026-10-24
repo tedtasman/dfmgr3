@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+
+yolo=false
+message=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -y|--yolo)
+            yolo=true
+            shift
+            ;;
+        *)
+            message=$1
+            shift
+            ;;
+    esac
+done
+
+if [[ -z $message ]] && ! $yolo; then
+    echo "must provide commit message"
+    exit 1
+fi
+
+if $yolo; then
+    git -C "$SCRIPT_DIR" submodule foreach 'git yolo'
+    git -C "$SCRIPT_DIR" yolo
+else
+    export message
+    git -C "$SCRIPT_DIR" submodule foreach \
+        'git add . && { git diff --cached --quiet || git commit -m "$message"; } && git push'
+    git -C "$SCRIPT_DIR" add -u
+    git -C "$SCRIPT_DIR" diff --cached --quiet \
+        || git -C "$SCRIPT_DIR" commit -m "bumped submodule(s)"
+    git -C "$SCRIPT_DIR" push
+fi
