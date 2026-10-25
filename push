@@ -30,7 +30,7 @@ if $yolo; then
 else
     export message
     git -C "$SCRIPT_DIR" submodule foreach \
-        'git add . && if git diff --cached --quiet; then echo "no updates $name"; else git commit -q -m "$message" && git push -q && echo "pushed $name"; fi'
+        'git add . && if git diff --cached --quiet; then echo "$name has no changes"; else git commit -q -m "$message" && git push -q && echo "pushed $name"; fi'
     git -C "$SCRIPT_DIR" add -u
     git -C "$SCRIPT_DIR" diff --cached --quiet \
         || git -C "$SCRIPT_DIR" commit -m "bumped submodule(s)"
