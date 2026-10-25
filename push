@@ -30,9 +30,9 @@ if $yolo; then
 else
     export message
     git -C "$SCRIPT_DIR" submodule foreach \
-        'git add . && { git diff --cached --quiet || git commit -m "$message"; } && git push'
+        'git add . && { git diff --cached --quiet || git commit -m "$message"; } && git push --quiet && printf "pushed $name\n\n"'
     git -C "$SCRIPT_DIR" add -u
     git -C "$SCRIPT_DIR" diff --cached --quiet \
         || git -C "$SCRIPT_DIR" commit -m "bumped submodule(s)"
-    git -C "$SCRIPT_DIR" push
+    git -C "$SCRIPT_DIR" push --quiet && echo "pushed dfmgr3"
 fi
