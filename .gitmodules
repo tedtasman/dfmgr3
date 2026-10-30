@@ -18,3 +18,9 @@
     url = https://github.com/tedtasman/git
     branch = main
     update = merge
+[submodule "viewer"]
+	path = viewer
+	url = https://github.com/tedtasman/viewer.git
+    branch = main
+    update = merge
+
