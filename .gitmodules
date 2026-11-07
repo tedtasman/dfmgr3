@@ -23,8 +23,8 @@
 	url = https://github.com/tedtasman/viewer.git
     branch = main
     update = merge
-[submodule "lottod"]
-	path = lottod
+[submodule "lotd"]
+	path = lotd
 	url = https://github.com/tedtasman/lotd.git
     branch = main
     update = merge
