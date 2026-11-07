@@ -25,6 +25,6 @@
     update = merge
 [submodule "lottod"]
 	path = lottod
-	url = https://github.com/tedtasman/lottod.git
+	url = https://github.com/tedtasman/lotd.git
     branch = main
     update = merge
