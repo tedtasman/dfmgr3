@@ -26,3 +26,4 @@ git clone https://github.com/tedtasman/dfmgr3.git --recurse-submodules
 
 ## Usage
 `install` creates symlinks in ~/.config back to the repo. So you can edit the config files as you normally would.
+
